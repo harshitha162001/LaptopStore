@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\activity1.props" />
+</Project>

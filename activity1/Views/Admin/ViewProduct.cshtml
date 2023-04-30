@@ -1,0 +1,74 @@
+﻿@model IEnumerable<activity1.Models.Product>
+
+@{
+    ViewData["Title"] = "ViewProduct";
+}
+@{
+    Layout = "_Layout";
+}
+
+
+<p>
+    <a asp-action="PCreate" style="margin-right:5px;" class="btn btn-success">Create New Product</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailableQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductAddedDate)
+            </th>
+           <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableQuantity)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>*@
+                <td><img src="@item.Image" width="100%" height="225" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductAddedDate)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandId)
+            </td>
+            <td>
+                    <a asp-action="PEdit" asp-route-id="@item.productId" style="margin-right:5px;" class="btn btn-info">Edit</a><br/>
+                    <a asp-action="PDetails" asp-route-id="@item.productId" style="margin-right:5px;" class="btn btn-warning">Details</a><br/>
+                    <a asp-action="PDelete" asp-route-id="@item.productId" style="margin-right:5px;" class="btn btn-secondary">Delete</a><br/>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
